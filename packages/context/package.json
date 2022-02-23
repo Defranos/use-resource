@@ -1,6 +1,6 @@
 {
   "name": "@use-resource/context",
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.0",
   "description": "> TODO: description",
   "author": "vincentguirou <vincent.guirou@gmail.com>",
   "homepage": "",
@@ -11,7 +11,9 @@
     "lib": "lib",
     "test": "__tests__"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "publishConfig": {
     "access": "public"
   },
