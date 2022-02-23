@@ -1,8 +1,14 @@
 {
   "name": "root",
-  "private": false,
+  "private": true,
   "scripts": {
-    "publish": "lerna run tsc && lerna publish"
+    "publish": "lerna run tsc && lerna publish",
+    "compile": "lerna run tsc"
+  },
+   "workspaces": {
+    "packages": [
+      "packages/**"
+    ]
   },
   "devDependencies": {
     "@types/node": "^17.0.20",

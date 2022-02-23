@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[TODO] => List Should render properly 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "margin": "1em",
+      }
+    }
+  >
+    <div
+      className="makeStyles-wrapper-1 makeStyles-wrapper-3"
+    >
+      <div
+        style={
+          Object {
+            "alignItems": "center",
+            "display": "flex",
+            "fontSize": "1.2em",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        >
+          My first todo task
+        </div>
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root makeStyles-icon-2"
+          focusable="false"
+          onClick={[Function]}
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+          />
+        </svg>
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root makeStyles-icon-2"
+          focusable="false"
+          onClick={[Function]}
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;

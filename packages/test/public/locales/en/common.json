@@ -1,0 +1,9 @@
+{
+  "appTitle": "CSNA REACT DEMO APP",
+  "home": "Home",
+  "todo": "Todo",
+  "signout": "Sign out",
+  "signin": "Sign in",
+  "email": "E-mail",
+  "password": "Password"
+}

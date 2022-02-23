@@ -7,8 +7,10 @@
     "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "target": "es6",
     "sourceMap": true,
+    "jsx": "react",
     "lib": [
       "es6"
     ]

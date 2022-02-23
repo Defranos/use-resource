@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.json",
+  "baseUrl": "./src",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "./src"
+  ]
+}
