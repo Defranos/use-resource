@@ -1,6 +1,6 @@
 {
   "name": "@use-resource/context",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0",
   "description": "> TODO: description",
   "author": "vincentguirou <vincent.guirou@gmail.com>",
   "homepage": "",
@@ -23,8 +23,8 @@
   },
   "dependencies": {
     "@types/react": "^17.0.39",
-    "msw": "^0.38.1",
     "axios": "^0.26.0",
+    "msw": "^0.38.1",
     "ramda": "^0.28.0",
     "react": "^17.0.2",
     "react-query": "^3.34.16",
