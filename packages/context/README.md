@@ -1,3 +1,7 @@
+# use-resource
+
+use-resource is a react based library to handle REST resources optimiticly context wise.
+
 ## Usage
 
 #### Create your resource types

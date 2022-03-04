@@ -1,12 +1,16 @@
 {
   "name": "@use-resource/context",
   "version": "0.1.0",
-  "description": "> TODO: description",
+  "description": "Optimisticaly manage your rest resources with one simple library",
   "author": "vincentguirou <vincent.guirou@gmail.com>",
   "homepage": "",
   "license": "ISC",
   "main": "lib/context.js",
   "typings": "lib/context.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-user/repo-url.git"
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -29,5 +33,6 @@
     "react": "^17.0.2",
     "react-query": "^3.34.16",
     "use-query": "^1.0.2"
-  }
+  },
+  "gitHead": "22568c9f442a24f98c9a415cdbc18edc4f654e28"
 }
