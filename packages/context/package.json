@@ -9,7 +9,7 @@
   "typings": "lib/context.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-user/repo-url.git"
+    "url": "https://github.com/Defranos/use-resource/tree/master/packages/context"
   },
   "directories": {
     "lib": "lib",
@@ -34,5 +34,5 @@
     "react-query": "^3.34.16",
     "use-query": "^1.0.2"
   },
-  "gitHead": "22568c9f442a24f98c9a415cdbc18edc4f654e28"
+  "gitHead": "20b7a06cd739bf977b59f54dcc64738cf366e3f7"
 }
