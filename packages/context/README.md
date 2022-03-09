@@ -123,7 +123,7 @@ resource will have the following properties:
     fetchOne: boolean;
     delete: boolean;
     deleteMany: boolean;
-    byId: (id: In["id"] | null | undefined) => boolean;
+    byId: (id: FM["id"] | null | undefined) => boolean;
   };
   errors: {
     fetch: Error | null;
@@ -143,25 +143,25 @@ resource will have the following properties:
   };
    methods: {
      create: (
-      payload: Partial<In>,
-      options?: MutateOptions<Out, CustomError | null, Partial<In>>
+      payload: Partial<FM>,
+      options?: MutateOptions<BM, CustomError | null, Partial<FM>>
     ) => void;
      edit: (
-      payload: In,
-      options?: MutateOptions<Out, CustomError | null, In>
+      payload: FM,
+      options?: MutateOptions<BM, CustomError | null, FM>
     ) => void;
      refetch: () => void;
-     getById: (id: In["id"] | undefined | null) => In | undefined;
-     delete: (id: In["id"]) => void;
-     deleteMany: (ids: In["id"][]) => void;
-     fetchOne: (id: In["id"]) => void;
+     getById: (id: FM["id"] | undefined | null) => FM | undefined;
+     delete: (id: FM["id"]) => void;
+     deleteMany: (ids: FM["id"][]) => void;
+     fetchOne: (id: FM["id"]) => void;
   }
   mutationReseter: {
-    fetch: () => void;
-    create: () => void;
-    edit: () => void;
-    fetchOne: () => void;
-    delete: () => void;
-    deleteMany: () => void;
+    fetch: () => void;
+    create: () => void;
+    edit: () => void;
+    fetchOne: () => void;
+    delete: () => void;
+    deleteMany: () => void;
   };
 ```
