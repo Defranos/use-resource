@@ -2,6 +2,10 @@
 
 use-resource is a react based library to handle REST resources optimiticly context wise.
 
+## Example
+
+see https://codesandbox.io/s/use-resource-context-example-app-ztlq88 for a todo app example using this package
+
 ## Usage
 
 #### Create your resource types
