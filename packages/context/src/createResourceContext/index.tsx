@@ -8,7 +8,7 @@ const createResourceContext = <
   CustomError = Error
 >(
   name: string,
-  extraProperties?: string[]
+  extraProperties: string[] = []
 ) => {
   return createContext<IResourceContextState<In, Out, Properties, CustomError>>(
     {

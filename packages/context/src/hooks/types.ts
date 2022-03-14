@@ -100,7 +100,7 @@ export type IResourceContextState<
       | keyof IStateProperties
       | Exclude<keyof Properties, "byId">]: boolean;
   } & {
-    readonly byId: (id: In["id"] | null | undefined) => boolean;
+    readonly byId: (id: In["id"]) => boolean;
   };
   readonly errors: {
     readonly [Property in
