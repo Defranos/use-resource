@@ -2,9 +2,13 @@
 
 use-resource is a react based library to handle REST resources optimiticly context wise.
 
-## Example
+## Examples
 
-see https://codesandbox.io/s/use-resource-context-example-app-ztlq88 for a todo app example using this package
+For a todo app example using this package you can check the following codesandboxes
+
+The [Basic](https://codesandbox.io/s/use-resource-context-example-app-simple-ug5rz9) example features a CRUD only implementation
+
+The [Advanced](https://codesandbox.io/s/use-resource-context-example-app-ztlq88) example features a CRUD with aditional rest methods such as complete and unComplete for todo tasks
 
 ## Usage
 
@@ -22,6 +26,35 @@ export type FM = {
 export type BM = {
   // ...properties
 }
+
+```
+
+#### Write your custom API
+
+```
+// API.ts
+import { IAPI } from "@use-resource/context";
+
+const API: IAPI = {
+  get: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload: Payload
+  ): Promise<Response> => ...
+  post: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload: Payload
+  ): Promise<Response> => ...
+  put: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload: Payload
+  ): Promise<Response> => ...
+  delete: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload: Payload
+  ): Promise<Response> => ...
+};
+
+export default API;
 
 ```
 
@@ -71,10 +104,11 @@ export default parser;
 import useResource, { IParser } from "@use-resource/context";
 import { FM, BM } from "./types";
 import parser from "./parser";
+import api from "./API";
 
 const endpoint = "http://my-resource-endpoint";
 
-export default () => useResource<FM, BM>({ endpoint, parser });
+export default () => useResource<FM, BM>({ endpoint, parser, api });
 
 ```
 

@@ -2,7 +2,7 @@
   "name": "@use-resource/context",
   "version": "0.1.9",
   "description": "Optimisticaly manage your rest resources with one simple library",
-  "author": "vincentguirou <vincent.guirou@gmail.com>",
+  "author": "vincent guirou <vincent.guirou@gmail.com>",
   "homepage": "",
   "license": "ISC",
   "main": "lib/context.js",
@@ -27,11 +27,9 @@
   },
   "dependencies": {
     "@types/react": "^17.0.39",
-    "msw": "^0.38.1",
     "ramda": "^0.28.0",
     "react": "^17.0.2",
-    "react-query": "^3.34.16",
-    "use-query": "^1.0.2"
+    "react-query": "^3.34.16"
   },
-  "gitHead": "a776c4e365b43c7caee0735a6d06d09659622ae5"
+  "gitHead": "d15aa1036bd23f53c91069dc7b8ce04273b36422"
 }
