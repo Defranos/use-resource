@@ -52,18 +52,16 @@ const parser: IParser<FM, BM> = {
   in,
   out,
   partialOut,
-  axiosResponse: ({ data }) => data,
 };
 
 export default parser;
 ```
 
-| Parameter       | Type                                    | Description                                                                                               |
-| :-------------- | :-------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
-| `in`            | `(payload: BM) => FM`                   | **Required**. Parses your resource from backend to frontend                                               |
-| `out`           | `(payload: FM) => BM`                   | **Required**. Parses your resource from frontend to backend                                               |
-| `partialOut`    | `(payload: Partial<FM>) => Partial<BM>` | **Required**. Parses your resource from a partial of the frontend model to a partial of the backend model |
-| `axiosResponse` | `(payload: unknown) => any`             | **Required**. Parses the axios response                                                                   |
+| Parameter    | Type                                    | Description                                                                                               |
+| :----------- | :-------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
+| `in`         | `(payload: BM) => FM`                   | **Required**. Parses your resource from backend to frontend                                               |
+| `out`        | `(payload: FM) => BM`                   | **Required**. Parses your resource from frontend to backend                                               |
+| `partialOut` | `(payload: Partial<FM>) => Partial<BM>` | **Required**. Parses your resource from a partial of the frontend model to a partial of the backend model |
 
 #### Generate context values
 

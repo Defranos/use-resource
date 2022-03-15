@@ -21,6 +21,24 @@ export interface IWithId {
   readonly id: string | number;
 }
 
+export interface IAPI {
+  get: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload?: Payload
+  ) => Promise<Response>;
+  post: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload?: Payload
+  ) => Promise<Response>;
+  put: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload?: Payload
+  ) => Promise<Response>;
+  delete: <Payload extends unknown, Response extends unknown>(
+    url: string,
+    payload?: Payload
+  ) => Promise<Response>;
+}
 export interface ICustomReducer<T extends IWithId> {
   (state: IState<T>, action: IAction<string, any>): IState<T>;
 }
@@ -64,7 +82,6 @@ export interface IParser<In, Out> {
   in: (data: Out) => In;
   out: (data: In) => Out;
   partialOut: (data: Partial<In>) => Partial<Out>;
-  axiosResponse: (data: unknown) => any;
 }
 
 export interface IState<T extends IWithId> {
@@ -122,7 +139,7 @@ export type IResourceContextState<
       options?: MutateOptions<Out, CustomError | null, In>
     ) => void;
     readonly refetch: () => void;
-    readonly getById: (id: In["id"] | undefined | null) => In | undefined;
+    readonly getById: (id: In["id"]) => In | undefined;
     readonly delete: (id: In["id"]) => void;
     readonly deleteMany: (ids: In["id"][]) => void;
     readonly fetchOne: (id: In["id"]) => void;

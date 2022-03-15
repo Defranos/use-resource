@@ -1,26 +1,25 @@
 import { useMemo } from "react";
 import { useMutation } from "react-query";
-import axios, { AxiosError } from "axios";
 
-import { IParser, IWithId } from "./types";
+import { IParser, IWithId, IAPI } from "./types";
 
 const createRequestFactory =
-  <In, Out extends IWithId>(endpoint: string, parser: IParser<In, Out>) =>
+  <In, Out extends IWithId>(
+    endpoint: string,
+    parser: IParser<In, Out>,
+    api: IAPI
+  ) =>
   (payload: Partial<In>): Promise<Out> =>
-    axios
-      .post<Out>(endpoint, parser.partialOut(payload))
-      .then(parser.axiosResponse);
+    api.post<Partial<Out>, Out>(endpoint, parser.partialOut(payload));
 
 const useCreate = <In, Out extends IWithId, CustomError>(
   endpoint: string,
-  parser: IParser<In, Out>
+  parser: IParser<In, Out>,
+  api: IAPI
 ) => {
-  const request = createRequestFactory<In, Out>(endpoint, parser);
-  const { mutate, data, ...rest } = useMutation<
-    Out,
-    AxiosError<CustomError>,
-    Partial<In>
-  >(request);
+  const request = createRequestFactory<In, Out>(endpoint, parser, api);
+  const { mutate, data, ...rest } =
+    useMutation<Out, CustomError, Partial<In>>(request);
 
   return {
     mutate,

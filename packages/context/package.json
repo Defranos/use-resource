@@ -27,12 +27,11 @@
   },
   "dependencies": {
     "@types/react": "^17.0.39",
-    "axios": "^0.26.0",
     "msw": "^0.38.1",
     "ramda": "^0.28.0",
     "react": "^17.0.2",
     "react-query": "^3.34.16",
     "use-query": "^1.0.2"
   },
-  "gitHead": "fa39a677916d1cf2ae1941cdd8ea89a2bf3d6034"
+  "gitHead": "efa6b829eb20c2c95a9100c6b781ca4f3ee6f59b"
 }

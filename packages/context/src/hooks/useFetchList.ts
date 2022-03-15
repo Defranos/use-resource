@@ -1,8 +1,7 @@
 import { useMemo } from "react";
 import { useQuery } from "react-query";
-import axios, { AxiosError } from "axios";
 
-import { IParser, IWithId } from "./types";
+import { IParser, IWithId, IAPI } from "./types";
 
 const options = Object.freeze({
   staleTime: 1000 * 60 * 5,
@@ -11,19 +10,17 @@ const options = Object.freeze({
 });
 
 const fetchRequestFactory =
-  <In extends IWithId, Out extends IWithId>(
-    endpoint: string,
-    parser: IParser<In, Out>
-  ) =>
+  <Out extends IWithId>(endpoint: string, api: IAPI) =>
   (): Promise<Out[]> =>
-    axios.get(endpoint).then(parser.axiosResponse);
+    api.get<void, Out[]>(endpoint);
 
 const useFetchList = <In extends IWithId, Out extends IWithId, CustomError>(
   endpoint: string,
-  parser: IParser<In, Out>
+  parser: IParser<In, Out>,
+  api: IAPI
 ) => {
-  const request = fetchRequestFactory<In, Out>(endpoint, parser);
-  const { data, ...rest } = useQuery<Out[], AxiosError<CustomError> | null>(
+  const request = fetchRequestFactory<Out>(endpoint, api);
+  const { data, ...rest } = useQuery<Out[], CustomError>(
     endpoint,
     request,
     options

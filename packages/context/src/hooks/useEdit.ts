@@ -1,27 +1,24 @@
 import { useMemo } from "react";
 import { useMutation } from "react-query";
-import axios, { AxiosError } from "axios";
 
-import { IParser, IWithId } from "./types";
+import { IParser, IWithId, IAPI } from "./types";
 
 const editRequestFactory =
   <In extends IWithId, Out extends IWithId>(
     endpoint: string,
-    parser: IParser<In, Out>
+    parser: IParser<In, Out>,
+    api: IAPI
   ) =>
   (payload: In): Promise<Out> =>
-    axios.put<Out>(endpoint, parser.out(payload)).then(parser.axiosResponse);
+    api.put<Out, Out>(endpoint, parser.out(payload));
 
 const useEdit = <In extends IWithId, Out extends IWithId, CustomError>(
   endpoint: string,
-  parser: IParser<In, Out>
+  parser: IParser<In, Out>,
+  api: IAPI
 ) => {
-  const request = editRequestFactory<In, Out>(endpoint, parser);
-  const { mutate, data, ...rest } = useMutation<
-    Out,
-    AxiosError<CustomError>,
-    In
-  >(request);
+  const request = editRequestFactory<In, Out>(endpoint, parser, api);
+  const { mutate, data, ...rest } = useMutation<Out, CustomError, In>(request);
 
   return {
     mutate,

@@ -1,27 +1,21 @@
 import { useMemo } from "react";
 import { useMutation } from "react-query";
-import axios, { AxiosError } from "axios";
 
-import { IParser, IWithId } from "./types";
+import { IParser, IWithId, IAPI } from "./types";
 
 const fetchOneRequestFactory =
-  <In extends IWithId, Out extends IWithId>(
-    endpoint: string,
-    parser: IParser<In, Out>
-  ) =>
+  <In extends IWithId, Out extends IWithId>(endpoint: string, api: IAPI) =>
   (payload: In["id"]): Promise<Out> =>
-    axios.get<Out>(`${endpoint}/${payload}`).then(parser.axiosResponse);
+    api.get<void, Out>(`${endpoint}/${payload}`);
 
 const useFetchOne = <In extends IWithId, Out extends IWithId, CustomError>(
   endpoint: string,
-  parser: IParser<In, Out>
+  parser: IParser<In, Out>,
+  api: IAPI
 ) => {
-  const request = fetchOneRequestFactory<In, Out>(endpoint, parser);
-  const { mutate, data, ...rest } = useMutation<
-    Out,
-    AxiosError<CustomError>,
-    In["id"]
-  >(request);
+  const request = fetchOneRequestFactory<In, Out>(endpoint, api);
+  const { mutate, data, ...rest } =
+    useMutation<Out, CustomError, In["id"]>(request);
 
   return {
     mutate,

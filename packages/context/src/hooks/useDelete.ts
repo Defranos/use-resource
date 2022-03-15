@@ -1,16 +1,18 @@
 import { useMutation } from "react-query";
-import axios, { AxiosError } from "axios";
 
-import { IWithId } from "./types";
+import { IWithId, IAPI } from "./types";
 
 const deleteRequestFactory =
-  <In extends IWithId>(endpoint: string) =>
+  <In extends IWithId>(endpoint: string, api: IAPI) =>
   (payload: In["id"]): Promise<void> =>
-    axios.delete<void>(`${endpoint}/${payload}`).then();
+    api.delete<void, void>(`${endpoint}/${payload}`);
 
-const useDelete = <In extends IWithId, CustomError>(endpoint: string) => {
-  const request = deleteRequestFactory<In>(endpoint);
-  return useMutation<void, AxiosError<CustomError>, In["id"]>(request);
+const useDelete = <In extends IWithId, CustomError>(
+  endpoint: string,
+  api: IAPI
+) => {
+  const request = deleteRequestFactory<In>(endpoint, api);
+  return useMutation<void, CustomError, In["id"]>(request);
 };
 
 export default useDelete;

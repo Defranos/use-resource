@@ -1,7 +1,6 @@
 import { Dispatch, useEffect, useMemo } from "react";
 import { MutateOptions, useQuery } from "react-query";
-import { AxiosError } from "axios";
-import { keys, mergeDeepRight } from "ramda";
+import { keys } from "ramda";
 
 import useResourceReducer from "./useResourceReducer";
 import {
@@ -10,6 +9,7 @@ import {
   IParser,
   IWithId,
   IAction,
+  IAPI,
 } from "./types";
 import useCreate from "./useCreate";
 import useEdit from "./useEdit";
@@ -21,6 +21,7 @@ import useDeleteMany from "./useDeleteMany";
 interface IProps<In extends IWithId, Out, Properties> {
   readonly endpoint: string;
   readonly parser: IParser<In, Out>;
+  readonly api: IAPI;
   readonly extraProperties?: ExtraPropertiesType<Properties>;
   readonly customReducer?: ICustomReducer<In>;
 }
@@ -29,9 +30,6 @@ type DispatchableMethod = (
   dispatch: Dispatch<IAction<string, any>>
 ) => (payload: any) => void;
 
-type Methods<Properties> = {
-  [Property in keyof Properties]: DispatchableMethod;
-};
 const useResource = <
   In extends IWithId,
   Out extends IWithId,
@@ -40,6 +38,7 @@ const useResource = <
 >({
   endpoint,
   parser,
+  api,
   extraProperties,
   customReducer,
 }: IProps<In, Out, Properties>) => {
@@ -77,19 +76,19 @@ const useResource = <
   );
 
   const reducer = useResourceReducer<In, Properties>(methods, customReducer);
-  const create = useCreate<In, Out, CustomError>(endpoint, parser);
-  const edit = useEdit<In, Out, CustomError>(endpoint, parser);
-  const fetchList = useFetchList<In, Out, CustomError>(endpoint, parser);
-  const fetchOne = useFetchOne<In, Out, CustomError>(endpoint, parser);
-  const deleteHook = useDelete<In, CustomError>(endpoint);
-  const deleteMany = useDeleteMany<In, CustomError>(endpoint);
+  const create = useCreate<In, Out, CustomError>(endpoint, parser, api);
+  const edit = useEdit<In, Out, CustomError>(endpoint, parser, api);
+  const fetchList = useFetchList<In, Out, CustomError>(endpoint, parser, api);
+  const fetchOne = useFetchOne<In, Out, CustomError>(endpoint, parser, api);
+  const deleteHook = useDelete<In, CustomError>(endpoint, api);
+  const deleteMany = useDeleteMany<In, CustomError>(endpoint, api);
 
   const registerList = () => reducer.populate(fetchList.data);
   useEffect(registerList, [fetchList.data, fetchList.isFetching]);
 
   const handleCreate = (
     payload: Partial<In>,
-    options?: MutateOptions<Out, AxiosError<CustomError> | null, Partial<In>>
+    options?: MutateOptions<Out, CustomError, Partial<In>>
   ) => {
     create.mutate(payload, options);
   };
@@ -103,7 +102,7 @@ const useResource = <
 
   const handleEdit = (
     payload: In,
-    options?: MutateOptions<Out, AxiosError<CustomError> | null, In>
+    options?: MutateOptions<Out, CustomError | null, In>
   ) => {
     reducer.handleEditRequest(payload);
     edit.mutate(payload, options);
@@ -129,7 +128,7 @@ const useResource = <
 
   const handleDelete = (
     id: In["id"],
-    options?: MutateOptions<void, AxiosError<CustomError> | null, In["id"]>
+    options?: MutateOptions<void, CustomError, In["id"]>
   ) => {
     reducer.handleDeleteOneRequested(id);
     const enhancedOptions = {
@@ -144,7 +143,7 @@ const useResource = <
 
   const handleDeleteMany = (
     ids: In["id"][],
-    options?: MutateOptions<void, AxiosError<CustomError> | null, In["id"][]>
+    options?: MutateOptions<void, CustomError, In["id"][]>
   ) => {
     const enhancedOptions = {
       ...options,
@@ -156,10 +155,9 @@ const useResource = <
     deleteMany.mutate(ids, enhancedOptions);
   };
 
-  const getLoadingById = (id: In["id"] | null | undefined) =>
+  const getLoadingById = (id: In["id"]) =>
     !!reducer.state[String(id)]?.isLoading;
-  const getById = (id: In["id"] | null | undefined) =>
-    reducer.state[String(id)]?.element;
+  const getById = (id: In["id"]) => reducer.state[String(id)]?.element;
 
   return {
     data: useMemo(
