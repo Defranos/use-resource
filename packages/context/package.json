@@ -1,6 +1,6 @@
 {
   "name": "@use-resource/context",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Optimisticaly manage your rest resources with one simple library",
   "author": "vincentguirou <vincent.guirou@gmail.com>",
   "homepage": "",
@@ -33,5 +33,5 @@
     "react-query": "^3.34.16",
     "use-query": "^1.0.2"
   },
-  "gitHead": "6c7b6f0e3fdfa4a39089ea829786291306a650d4"
+  "gitHead": "7177504b825a18b55c00ba550104ecc3836209e2"
 }
