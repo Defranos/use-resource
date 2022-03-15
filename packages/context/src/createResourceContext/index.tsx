@@ -5,7 +5,7 @@ const createResourceContext = <
   In extends IWithId,
   Out extends IWithId,
   Properties = unknown,
-  CustomError = Error
+  CustomError = Error | null
 >(
   name: string,
   extraProperties: string[] = []

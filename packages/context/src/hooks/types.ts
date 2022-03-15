@@ -1,6 +1,6 @@
 import { MutateOptions, useQuery } from "react-query";
 
-export interface IExtraProperty<CustomError = Error> {
+export interface IExtraProperty<CustomError = Error | null> {
   readonly method: (payload: any) => void;
   readonly loading: boolean;
   readonly error: CustomError;
@@ -8,7 +8,7 @@ export interface IExtraProperty<CustomError = Error> {
   readonly status: ReturnType<typeof useQuery>["status"] | null;
 }
 
-export type ExtraPropertiesType<T, CustomError = Error> = {
+export type ExtraPropertiesType<T, CustomError = Error | null> = {
   [Property in keyof T]: IExtraProperty<CustomError>;
 };
 
@@ -109,7 +109,7 @@ export type IResourceContextState<
   In extends IWithId,
   Out extends IWithId,
   Properties,
-  CustomError = Error
+  CustomError = Error | null
 > = {
   readonly data: In[];
   readonly loadings: {
