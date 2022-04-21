@@ -16,9 +16,7 @@ const createResourceContext = <
       loadings: {
         ...extraProperties.reduce(
           (acc, key) => ({ ...acc, [key]: false }),
-          {} as {
-            readonly [Property in keyof Properties]: boolean;
-          }
+          {} as { readonly [Property in keyof Properties]: boolean }
         ),
         fetch: false,
         create: false,
@@ -42,9 +40,7 @@ const createResourceContext = <
         deleteMany: null,
         ...extraProperties.reduce(
           (acc, key) => ({ ...acc, [key]: null }),
-          {} as {
-            readonly [Property in keyof Properties]: null;
-          }
+          {} as { readonly [Property in keyof Properties]: null }
         ),
       },
       status: {
@@ -56,9 +52,7 @@ const createResourceContext = <
         deleteMany: null,
         ...extraProperties.reduce(
           (acc, key) => ({ ...acc, [key]: null }),
-          {} as {
-            readonly [Property in keyof Properties]: null;
-          }
+          {} as { readonly [Property in keyof Properties]: null }
         ),
       },
       mutationReseter: {
@@ -101,9 +95,7 @@ const createResourceContext = <
               );
             },
           }),
-          {} as {
-            readonly [Property in keyof Properties]: () => void;
-          }
+          {} as { readonly [Property in keyof Properties]: () => void }
         ),
       },
       methods: {

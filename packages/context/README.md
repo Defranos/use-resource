@@ -159,7 +159,7 @@ resource will have the following properties:
     fetchOne: boolean;
     delete: boolean;
     deleteMany: boolean;
-    byId: (id: FM["id"] | null | undefined) => boolean;
+    byId: (id: FM["id"]) => boolean;
   };
   errors: {
     fetch: Error | null;
@@ -187,7 +187,7 @@ resource will have the following properties:
       options?: MutateOptions<BM, CustomError | null, FM>
     ) => void;
      refetch: () => void;
-     getById: (id: FM["id"] | undefined | null) => FM | undefined;
+     getById: (id: FM["id"]) => FM | undefined;
      delete: (id: FM["id"]) => void;
      deleteMany: (ids: FM["id"][]) => void;
      fetchOne: (id: FM["id"]) => void;
