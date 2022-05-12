@@ -1,9 +1,9 @@
 import { MutateOptions, useQuery } from "react-query";
 
-export interface IExtraProperty<CustomError = Error | null> {
+export interface IExtraProperty<CustomError = Error> {
   readonly method: (payload: any) => void;
   readonly loading: boolean;
-  readonly error: CustomError;
+  readonly error: CustomError | null;
   readonly mutationReseter: () => void;
   readonly status: ReturnType<typeof useQuery>["status"] | null;
 }
