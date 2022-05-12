@@ -8,7 +8,7 @@ export interface IExtraProperty<CustomError = Error> {
   readonly status: ReturnType<typeof useQuery>["status"] | null;
 }
 
-export type ExtraPropertiesType<T, CustomError = Error | null> = {
+export type ExtraPropertiesType<T, CustomError = Error> = {
   [Property in keyof T]: IExtraProperty<CustomError>;
 };
 
