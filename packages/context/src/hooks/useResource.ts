@@ -10,6 +10,7 @@ import {
   IWithId,
   IAction,
   IAPI,
+  IResourceContextState,
 } from "./types";
 import useCreate from "./useCreate";
 import useEdit from "./useEdit";
@@ -41,7 +42,12 @@ const useResource = <
   api,
   extraProperties,
   customReducer,
-}: IProps<In, Out, Properties>) => {
+}: IProps<In, Out, Properties>): IResourceContextState<
+  In,
+  Out,
+  Properties,
+  CustomError
+> => {
   const propertyKeys = keys(extraProperties);
 
   const methods = propertyKeys.reduce(

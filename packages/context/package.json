@@ -26,9 +26,9 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@types/react": "^17.0.39",
+    "@types/react": "^18.0.14",
     "ramda": "^0.28.0",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-query": "^3.34.16"
   },
   "gitHead": "68614c7e99fed69cfc502e7f3d24117d15c07b3a"
