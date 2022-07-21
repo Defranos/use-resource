@@ -1,6 +1,6 @@
 {
   "name": "@use-resource/context",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Optimisticaly manage your rest resources with one simple library",
   "author": "vincent guirou <vincent.guirou@gmail.com>",
   "homepage": "",
