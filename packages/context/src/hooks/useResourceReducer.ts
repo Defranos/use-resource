@@ -33,7 +33,9 @@ function isAction<T extends IWithId>(
 }
 
 const reducer =
-  <T extends IWithId>(customReducer?: ICustomReducer<T>) =>
+  <T extends IWithId, CustomActions extends IAction<string, any> | undefined>(
+    customReducer?: ICustomReducer<T, CustomActions>
+  ) =>
   (state: IState<T>, action: Action<T> | IAction<string, T>): IState<T> => {
     if (!isAction<T>(action)) {
       return customReducer ? customReducer(state, action) : state;
@@ -110,9 +112,13 @@ type ExtraMethods<Properties> = {
     dispatch: Dispatch<IAction<string, any>>
   ) => (payload: Properties[Property]) => void;
 };
-const useResourceReducer = <T extends IWithId, Properties>(
+const useResourceReducer = <
+  T extends IWithId,
+  Properties,
+  CustomActions extends IAction<string, any> | undefined
+>(
   extraMethods?: ExtraMethods<Properties>,
-  customReducer?: ICustomReducer<T>
+  customReducer?: ICustomReducer<T, CustomActions>
 ) => {
   const [state, dispatch] = useReducer(
     reducer(customReducer) as Reducer<T>,

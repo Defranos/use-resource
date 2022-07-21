@@ -19,12 +19,17 @@ import useFetchOne from "./useFetchOne";
 import useDelete from "./useDelete";
 import useDeleteMany from "./useDeleteMany";
 
-interface IProps<In extends IWithId, Out, Properties> {
+interface IProps<
+  In extends IWithId,
+  Out,
+  Properties,
+  CustomActions extends IAction<string, any> | undefined
+> {
   readonly endpoint: string;
   readonly parser: IParser<In, Out>;
   readonly api: IAPI;
   readonly extraProperties?: ExtraPropertiesType<Properties>;
-  readonly customReducer?: ICustomReducer<In>;
+  readonly customReducer?: ICustomReducer<In, CustomActions>;
 }
 
 type DispatchableMethod = (
@@ -35,14 +40,15 @@ const useResource = <
   In extends IWithId,
   Out extends IWithId,
   Properties = {},
-  CustomError = Error
+  CustomError = Error,
+  CustomActions extends IAction<string, any> | undefined = undefined
 >({
   endpoint,
   parser,
   api,
   extraProperties,
   customReducer,
-}: IProps<In, Out, Properties>): IResourceContextState<
+}: IProps<In, Out, Properties, CustomActions>): IResourceContextState<
   In,
   Out,
   Properties,
@@ -81,7 +87,10 @@ const useResource = <
     }
   );
 
-  const reducer = useResourceReducer<In, Properties>(methods, customReducer);
+  const reducer = useResourceReducer<In, Properties, CustomActions>(
+    methods,
+    customReducer
+  );
   const create = useCreate<In, Out, CustomError>(endpoint, parser, api);
   const edit = useEdit<In, Out, CustomError>(endpoint, parser, api);
   const fetchList = useFetchList<In, Out, CustomError>(endpoint, parser, api);

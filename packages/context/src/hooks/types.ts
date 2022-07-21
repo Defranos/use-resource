@@ -39,8 +39,11 @@ export interface IAPI {
     payload?: Payload
   ) => Promise<Response>;
 }
-export interface ICustomReducer<T extends IWithId> {
-  (state: IState<T>, action: IAction<string, any>): IState<T>;
+export interface ICustomReducer<
+  T extends IWithId,
+  CustomActions extends IAction<string, any>
+> {
+  (state: IState<T>, action: CustomActions): IState<T>;
 }
 
 type CreateSucceededAction<T> = IAction<"CREATE_SUCCEEDED", T>;
